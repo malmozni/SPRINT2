@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPRINT2</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> 
+   <link rel="stylesheet" href="index.css"> 
+</head>
+<body class="container">
+
+    <div>
+        <h1>App de gastos</h1>
+        <h4>ingresa cuánto pagó cada persona</h4>
+    </div>
+
+    <form id="envioformulario">
+
+        <label for="iname">Nombre:</label> <br>
+        <input id="iname" type="text" name="nombre" required> <br>
+
+        <label for="igasto">Gasto:</label> <br>
+        <input id="igasto" type="number" name="gasto" max="10000" min="0" required> <br><br>
+
+        <input type="submit" value="Enviar"> 
+    
+    </form> <br> 
+
+    <div>
+        <table id="tabladatos">
+            <tr>
+                <th>Nombre</th>
+                <th>Gasto</th>
+            </tr>
+        </table>
+    </div>
+
+  <script>
+      const form = document.getElementById("envioformulario") //GUARDO FORMULARIO EN VARIABLE//
+      form.addEventListener("submit", function(evento){
+          evento.preventDefault();
+          let envioformulariodata = new FormData (form);
+          let tabladatosvar = document.getElementById ("tabladatos"); //GUARDO TABLA EN VARIABLE// 
+          let nuevafiladatosvar = tabladatosvar.insertRow(-1); //INSERTO FILA//
+          let nuevaceldadatosvar = nuevafiladatosvar.insertCell(0); //INSERTO CELDA//
+          nuevaceldadatosvar.textContent = envioformulariodata.get ("nombre") //LLAMO A NAME="NOMBRE"//
+          nuevaceldadatosvar = nuevafiladatosvar.insertCell(1); //INSERTO OTRA CELDA//
+          nuevaceldadatosvar.textContent = envioformulariodata.get ("gasto") //LLAMO A NAME=GASTO//
+      })
+  </script>
+</body>
+</html>
